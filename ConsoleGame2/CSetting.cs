@@ -9,10 +9,14 @@ namespace ConsoleGame2.Setting
     internal class CSetting
     {
 
-     
+        public static void WindowSet()
+        {
+            Console.SetWindowSize(100, 40);     //윈도우창 사이즈 100*40
+            //Console.CursorVisible = false;        //커서 안보이게 설정
+        }
 
 
-        public static async Task GameTimer1()      //타이머 1 : 제한시간이 줄어드는 것을 숫자료 표현
+        public static async Task GameTimer1()      //타이머 1 : 제한시간이 줄어드는 것을 숫자로 표현
         {
             for (int k = 30; k > 0; k--)
             {

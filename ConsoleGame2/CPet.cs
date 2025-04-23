@@ -4,17 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ConsoleGame2.Map;
+using ConsoleGame2.Image;
+using ConsoleGame2.Player;
+
 
 namespace ConsoleGame2.Pet
 {
     internal class CPet : CMap
     {
-
-
         public int needs;
         public int point = 0;
-
-
 
         public void Food()
         {
@@ -22,7 +21,7 @@ namespace ConsoleGame2.Pet
             Console.Write("                  ");
             Console.SetCursorPosition(66, 5);
             Console.WriteLine("배고파");
-            FoodImg(66,6);
+            CImage.FoodImg(66,6);
 
         }
         public void Hug()
@@ -32,7 +31,7 @@ namespace ConsoleGame2.Pet
             Console.SetCursorPosition(66, 5);
 
             Console.WriteLine("쓰다듬어줘");
-            HugImg(66, 6);
+            CImage.HugImg(66, 6);
         }
         public void Wash()
         {
@@ -41,7 +40,7 @@ namespace ConsoleGame2.Pet
             Console.SetCursorPosition(66, 5);
 
             Console.WriteLine("씻을래");
-            WashImg(66, 6);
+            CImage.WashImg(66, 6);
         }
         public void Play()
         {
@@ -50,7 +49,7 @@ namespace ConsoleGame2.Pet
             Console.SetCursorPosition(66, 5);
 
             Console.WriteLine("놀아줘");
-            PlayImg(66, 6);
+            CImage.PlayImg(66, 6);
         }
 
 
@@ -76,8 +75,27 @@ namespace ConsoleGame2.Pet
             }
         }
 
+        public void Happy()
+        {
+            Console.SetCursorPosition(50, 7);
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(" ♡");
+            Console.ResetColor();
+            Thread.Sleep(500);
+            Console.SetCursorPosition(50, 7);
+            Console.Write("    ");
+        }
 
-
+        public void Unhappy()
+        {
+            Console.SetCursorPosition(50, 7);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("ㅠㅠ");
+            Console.ResetColor();
+            Thread.Sleep(500);
+            Console.SetCursorPosition(50, 7);
+            Console.Write("    ");
+        }
         public void GetPoint()
         {
             point += 100;
@@ -87,7 +105,7 @@ namespace ConsoleGame2.Pet
         {
             if (point < 100)
             {
-                point = 000;
+                point = 0;
             }
             else
             {
@@ -98,24 +116,6 @@ namespace ConsoleGame2.Pet
         public void ShowPoint()
         {
             Console.WriteLine($"점수 : {point}점");
-        }
-
-        public void Happy()
-        {
-            Console.SetCursorPosition(50, 7);
-            Console.WriteLine(" ♡");
-            Thread.Sleep(500);
-            Console.SetCursorPosition(50, 7);
-            Console.Write("    ");
-        }
-
-        public void Unhappy()
-        {
-            Console.SetCursorPosition(50, 7);
-            Console.WriteLine("ㅠㅠ");
-            Thread.Sleep(500);
-            Console.SetCursorPosition(50, 7);
-            Console.Write("    ");
         }
 
 
@@ -133,11 +133,7 @@ namespace ConsoleGame2.Pet
                     Food();
                     if (needs == 1)
                     {
-                        Console.SetCursorPosition(50, 7);
-                        Console.WriteLine(" ♡");
-                        Thread.Sleep(500);
-                        Console.SetCursorPosition(50, 7);
-                        Console.Write("    ");
+                        Happy();
                         GetPoint();
                     }
                     else
@@ -191,7 +187,9 @@ namespace ConsoleGame2.Pet
 
                 default:
                     Console.SetCursorPosition(50, 7);
-                    Console.WriteLine("뭐여;");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine("엥;");
+                    Console.ResetColor();
                     Thread.Sleep(500);
                     Console.SetCursorPosition(50, 7);
                     Console.Write("       ");
@@ -199,6 +197,31 @@ namespace ConsoleGame2.Pet
                     break;
             }
         }
+        public void ShowResult()
+        {
+            if (point < 500)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.WriteLine(" 강아지를 더 아껴주세요..");
+                Console.ResetColor();
+            }
+            else if (point >= 500 && point < 1500)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(" 강아지가 즐거워하네요!");
+                Console.ResetColor();
+            }
+            else if (point >= 1500)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine(" 강아지가 정말 행복해하고 있어요!");
+                Console.ResetColor();
+            }
+
+        }
+
+
+
     }
 }
 

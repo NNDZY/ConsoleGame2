@@ -7,6 +7,7 @@ using ConsoleGame2.Map;
 using ConsoleGame2.Setting;
 using ConsoleGame2.Pet;
 using ConsoleGame2.Player;
+using System.Drawing;
 
 namespace ConsoleGame2.PlayingGame
 {
@@ -18,20 +19,18 @@ namespace ConsoleGame2.PlayingGame
             Console.Clear();
 
 
-            //Console.CursorVisible = false;        커서 안보이게 설정
             CPlayingGame playingGame = new CPlayingGame();
-           
+            CPet pet = new CPet();
+
 
 
             Thread.Sleep(1000);
             System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();    //스탑워치 객체
             stopwatch.Start();
 
-            PlayPage();       //이미지를 띄우고, 요구를 같이 표시해주어야함
+            PlayPage();       //이미지를 띄우고, 요구를 같이 표시
+             
 
-
-            CPet pet = new CPet();
-            CPlayer player = new CPlayer();
 
             Task task1 = CSetting.GameTimer1();
             Task task2 = CSetting.GameTimer2();
@@ -56,6 +55,7 @@ namespace ConsoleGame2.PlayingGame
 
                     //결과창
                     pet.ShowPoint();
+                    pet.ShowResult();
                     Thread.Sleep(1000);
 
                     RestartGame();
@@ -66,7 +66,11 @@ namespace ConsoleGame2.PlayingGame
         }
 
 
-       public static void RestartGame()
+
+
+
+
+        public static void RestartGame()
         {
             Console.SetCursorPosition(1, 18);
             Console.WriteLine("다시 시작하기 (스페이스바) \n 게임 종료 (엔터)");
@@ -80,6 +84,8 @@ namespace ConsoleGame2.PlayingGame
                     StartGame();
                     break;
                 case ConsoleKey.Enter:
+                    Console.WriteLine("게임을 종료합니다");
+                    Thread.Sleep(1000);
                     break;
             }
         }
