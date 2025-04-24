@@ -8,16 +8,15 @@ namespace ConsoleGame2.Setting
 {
     internal class CSetting
     {
-
         public static void WindowSet()
         {
             Console.SetWindowSize(100, 40);     //윈도우창 사이즈 100*40
-            //Console.CursorVisible = false;        //커서 안보이게 설정
+            Console.CursorVisible = false;        //커서 안보이게 설정
         }
-
-
         public static async Task GameTimer1()      //타이머 1 : 제한시간이 줄어드는 것을 숫자로 표현
         {
+            Console.Write("게임 시작!");
+            Console.Write("            ");
             for (int k = 30; k > 0; k--)
             {
                 Console.SetCursorPosition(1, 1);
@@ -28,10 +27,7 @@ namespace ConsoleGame2.Setting
             }
             Console.SetCursorPosition(1, 1);
             Console.Write($"제한 시간 종료");
-
         }
-
-
         public static async Task GameTimer2()      //타이머 2 : 제한시간을 프로그레스바로 표현
         {
             Console.SetCursorPosition(1, 2);
@@ -44,11 +40,6 @@ namespace ConsoleGame2.Setting
                 Console.Write("■");
                 await Task.Delay(993);
             }
-
         }
-
-
-
-
     }
 }

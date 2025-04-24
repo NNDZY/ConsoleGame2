@@ -8,19 +8,13 @@ namespace ConsoleGame2
     {
         static async Task Main(string[] args)
         {
+            
+
             Random random = new Random();
 
             CSetting.WindowSet();
 
-            CMap.MainPage();     //시작화면
-
-            CPlayingGame.StartGame();       //static은 클래스로 직접 접근
-
-           
-
-
-
-
+            CPlayingGame.StartGame(); 
 
 
         }
